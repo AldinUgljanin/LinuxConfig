@@ -1,0 +1,73 @@
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf
+
+# switch panes using Alt-vim-keys without prefix
+bind -n M-h select-pane -L
+bind -n M-l select-pane -R
+bind -n M-k select-pane -U
+bind -n M-j select-pane -D
+
+# Pane resizing
+bind -n M-H resize-pane -L 5
+bind -n M-J resize-pane -D 5
+bind -n M-K resize-pane -U 5
+bind -n M-L resize-pane -R 5
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+# esc key
+set -s escape-time 0
+
+# Theme
+
+set -g default-terminal "screen-256color"
+
+# pane border
+set -g pane-border-style fg='#6272a4'
+set -g pane-active-border-style fg='#ff79c6'
+
+# message text
+set -g message-style bg='#44475a',fg='#8be9fd'
+
+set -g status-style bg='#44475a',fg='#bd93f9'
+set -g status-interval 1
+
+# status left
+# are we controlling tmux or the content of the panes
+set -g status-left '#[bg=#f8f8f2]#[fg=#282a36]#{?client_prefix,#[bg=#ff79c6],} ☺ '
+
+# are we zoomed into a pane
+set -ga status-left '#[bg=#44475a]#[fg=#ff79c6] #{?window_zoomed_flag, ↕  ,   }'
+
+
+# ------ status theme -------------------------------
+set -g message-style "bg=#4e4e4e, fg=#ffffd7"        # tomorrow night blue, base3
+
+#752314 - green
+set -g status-style "bg=#333333, fg=white"   # tomorrow night blue, base3
+set -g status-left "#[bg=#570299, fg=#ffffd7] #S "       # blue
+set -g status-left-length 400
+set -g status-right "#{?client_prefix, ⌨ , } #[bg=#570299, fg=#ffffd7] #(whoami)@#h #[bg=#5f0000] %Y-%m-%d %H:%M "
+set -g status-right-length 600
+
+
+set -wg window-status-format " #I #W "
+set -wg window-status-current-format " #I #W "
+set -wg window-status-separator ""
+set -wg window-status-current-style "bg=#4e4e4e, fg=#ffffd7" 
+set -wg window-status-last-style "fg=white"
+
+set -wg pane-active-border-style "fg=blue"
+set -wg pane-border-style "fg=#585858"       # base01
