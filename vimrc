@@ -36,6 +36,10 @@ if version >= 700
 endif
 
 "" Mapings
+" leader keys
+let mapleader = ","
+
+
 inoremap jj <Esc>
 
 nnoremap <C-h> <C-w>h
@@ -52,6 +56,13 @@ noremap! <Down> <Nop>
 noremap! <Left> <Nop>
 noremap! <Right> <Nop>
 noremap! <Up> <Nop>
+
+" quickly edit and source this vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" clear search
+nnoremap <silent> <Leader>, :noh<cr>
 
 "" save as root
 cnoremap w!! w !sudo tee %
